@@ -1,12 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TodoTemplate from './components/TodoTemplate'
 
 function App() {
   return (
-    <div>
-      Todo App을 만들자!
-    </div>
+    <TodoTemplate>Todo App을 만들자!</TodoTemplate>
   );
 }
 
