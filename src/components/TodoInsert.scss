@@ -1,0 +1,37 @@
+.TodoInsert {
+  display: flex;  // flex를 사용하기 위해서는 컨테이너 태그에 display:flex 속성을 부여
+  background: #495057;  // 배경색
+  input {
+    // 기본 스타일 초기화
+    background: none;
+    outline: none;  // 외곽선 속성
+    border: none;  // 테두리 속성
+    padding: 0.5rem;  // 안쪽 여백
+    font-size: 1.125rem;
+    line-height: 1.5;  // 줄간격
+    color: white;
+    &::placeholder {  // & basically means "this"
+      color: #dee2e6;
+    }
+    // 버튼을 제외한 영역을 모두 차지하기
+    flex: 1;
+  }
+  button {
+    // 기본 스타일 초기화
+    background: none;
+    outline: none;
+    border: none;
+    background: #868e96;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;  // 요소 위에 마우스 커서가 올라갔을 때 보여줄 모양을 지정
+    transition: 0.1s background ease-in;  // CSS 속성을 변경할 때 애니메이션 속도를 조절하는 방법을 제공. transition 속성을 사용하여 정해진 시간 동안 요소의 속성값을 부드럽게 변화시킬 수 있다. ease-in은 시작지점의 변화가 천천히 진행된다.
+    &:hover {
+      background: #adb5bd;
+    }
+  }
+}
