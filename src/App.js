@@ -19,10 +19,14 @@ function App() {
     nextId.current += 1  // nextId 1씩 더하기
   }, [todos])  // todos가 바뀌었을 때만 함수 생성
 
+  const onRemove = useCallback(id => {  // App 컴포넌트에서 id를 파라미터로 받아 와서 같은 id를 가진 항목을 todos 배열에서 지우는 함수
+    setTodos(todos.filter(todo => todo.id !== id))
+  }, [todos])
+
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert}/>
-      <TodoList todos={todos}/>  {/* todos 배열이 TodoList에 props로 전달된다. TodoList에서 이 값을 받아 TodoItem으로 변환하여 렌더링 된다. */}
+      <TodoList todos={todos} onRemove={onRemove}/>  {/* todos 배열이 TodoList에 props로 전달된다. TodoList에서 이 값을 받아 TodoItem으로 변환하여 렌더링 된다. */}
     </TodoTemplate>
   )
 }

@@ -10,15 +10,15 @@ import {
 import cn from 'classnames' /* 조건부 스타일링을 위해 classnames를 사용 */
 import './TodoListItem.scss'
 
-function TodoListItem ({ todo }) {
-  const { text, checked } = todo
+function TodoListItem ({ todo, onRemove }) {
+  const { id, text, checked } = todo
   return (
     <div className="TodoListItem">
       <div className={cn('checkbox', { checked })}>
         { checked ? <MdCheckBox/> : <MdCheckBoxOutlineBlank/>}
         <div className="text">{text}</div>
       </div>
-      <div className="remove">
+      <div className="remove" onClick={() => onRemove(id)}> {/* 삭제 버튼을 누르면 현재 자신이 가진 id를 넣어서 삭제 함수를 호출 */}
         <MdRemoveCircleOutline/>
       </div>
     </div>
