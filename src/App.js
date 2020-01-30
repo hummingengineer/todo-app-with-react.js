@@ -23,10 +23,15 @@ function App() {
     setTodos(todos.filter(todo => todo.id !== id))
   }, [todos])
 
+  // 배열 내장 함수 map을 사용하여 특정 id를 가지고 있는 객체의 checked 값을 반전 시켜준다.
+  const onToggle = useCallback(id => {
+    setTodos(todos.map(todo => todo.id === id ? { ...todo, checked: !todo.checked } : todo))  // todo.id와 id값이 다를 때는 변화를 주지 않고 처음 받아 왔던 상태 그대로 반환한다. map 함수는 배열을 전체적으로 새로운 형태로 변환하여 새로운 배열을 생성해야 할 때 사용.
+  }, [todos])
+
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert}/>
-      <TodoList todos={todos} onRemove={onRemove}/>  {/* todos 배열이 TodoList에 props로 전달된다. TodoList에서 이 값을 받아 TodoItem으로 변환하여 렌더링 된다. */}
+      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>  {/* todos 배열이 TodoList에 props로 전달된다. TodoList에서 이 값을 받아 TodoItem으로 변환하여 렌더링 된다. */}
     </TodoTemplate>
   )
 }
