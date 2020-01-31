@@ -10,16 +10,18 @@ import {
 import cn from 'classnames' /* 조건부 스타일링을 위해 classnames를 사용 */
 import './TodoListItem.scss'
 
-function TodoListItem ({ todo, onRemove, onToggle }) {
+function TodoListItem ({ todo, onRemove, onToggle, style }) {
   const { id, text, checked } = todo
   return (
-    <div className="TodoListItem">
-      <div className={cn('checkbox', { checked })} onClick={() => onToggle(id)}>
-        { checked ? <MdCheckBox/> : <MdCheckBoxOutlineBlank/>}
-        <div className="text">{text}</div>
-      </div>
-      <div className="remove" onClick={() => onRemove(id)}> {/* 삭제 버튼을 누르면 현재 자신이 가진 id를 넣어서 삭제 함수를 호출 */}
-        <MdRemoveCircleOutline/>
+    <div className="TodoListItem-virtualized" style={style}>  {/* props로 받아온 스타일 적용. TodoListItem-virtualized 클래스를 만든 것은 컴포넌트 사이사이에 테두리를 제대로 쳐 주고, 홀수 번째/짝수 번째 항목에 다른 배경 색상을 설정하기 위함. */}
+      <div className="TodoListItem">
+        <div className={cn('checkbox', { checked })} onClick={() => onToggle(id)}>
+          {checked ? <MdCheckBox/> : <MdCheckBoxOutlineBlank/>}
+          <div className="text">{text}</div>
+        </div>
+        <div className="remove" onClick={() => onRemove(id)}>
+          <MdRemoveCircleOutline/>
+        </div>
       </div>
     </div>
   )
